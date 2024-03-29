@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'config.dart';
 import './ui/search_page.dart';
 import './services/openweathermap_api.dart';
+import './services/geolocation_service.dart';
+
 
 void main() {
   runApp(
