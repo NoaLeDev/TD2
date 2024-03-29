@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/services/openweathermap_api.dart';
 import '../models/location.dart';
+import './weather_page.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -58,9 +59,21 @@ class _SearchPage extends State<SearchPage> {
                 }
 
                 return Column(children: [
-                  for (var word in snapshot.data!)
+                  for (var location in snapshot.data!)
                     ListTile(
-                      title: Text(word.toString()),
+                      title: Text(location.toString()),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute<void>(
+                            builder: (BuildContext context) => WeatherPage(
+                              locationName: location.name,
+                              latitude: location.lat,
+                              longitude: location.lon,
+                            ),
+                          ),
+                        );
+                      },
                     )
                 ]);
               },
