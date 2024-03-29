@@ -15,8 +15,15 @@ class WeatherApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Provider(
-      create: (_) => OpenWeatherMapApi(apiKey: openWeatherMapApiKey),
+    return MultiProvider(
+      providers:[
+        Provider(
+          create: (_) => OpenWeatherMapApi(apiKey: openWeatherMapApiKey)
+        ),
+        Provider(
+          create: (_) => GeolocationService(),
+        ),
+      ], 
       child: MaterialApp(
         title: 'Weather App',
         theme: ThemeData.dark(),
